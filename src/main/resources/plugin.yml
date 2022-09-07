@@ -1,0 +1,8 @@
+name: NarutoCraftCore
+main: es.narutocraft.narutocraftcore.NarutoCraftCore
+version: '${project.version}'
+
+authors: [ Aitooor, Vicen621 ]
+
+softdepend:
+  - PlaceholderAPI
