@@ -42,6 +42,6 @@ public class CoreCommand extends BaseCommand {
         NarutoCraftCore.getConfiguration().save();
 
         Utils.send(sender, messageFile.setSpawn);
-        sender.playSound(sender.getLocation(), Sound.LEVEL_UP, 1.0f, 1.0f);
+        sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
     }
 }
