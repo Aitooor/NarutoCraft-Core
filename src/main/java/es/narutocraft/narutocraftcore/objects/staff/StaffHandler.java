@@ -7,7 +7,7 @@ public class StaffHandler {
 
     public static void sendMessageAllStaff(String message, boolean sound) {
         for (Staff staff : Staff.getStaffs().values()) {
-            if (sound) staff.getPlayer().playSound(staff.getPlayer().getLocation(), Sound.ANVIL_USE, 1, 1);
+            if (sound) staff.getPlayer().playSound(staff.getPlayer().getLocation(), Sound.BLOCK_ANVIL_BREAK, 1, 1);
             staff.getPlayer().sendMessage(Utils.ct(message));
         }
     }

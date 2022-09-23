@@ -14,23 +14,19 @@ public class MessagesFile extends BukkitYamlConfiguration {
     @Comment({"Use \\n for new lines", "Use %player% for player name" ,"" , "Join Message", "Use %player% for player name and prefix", "If prefix is empty, only player name will be used"})
     public String joinMessage =
             "\n&r" +
-                    "\n&6&lETERNAL &8| &bSurvival Clásico &f1.19"+
+                    "\n&6&lNARUTOCRAFT &8| &bServer 1"+
                     "\n&r"+
-                    "\n&aIP &7eternaln.net"+
-                    "\n&aTIENDA &7https://tienda.eternaln.net"+
-                    "\n&aDISCORD &7https://discord.com/invite/bMarGsQYfb"+
+                    "\n&aIP &7narutocraft.es"+
+                    "\n&aTIENDA &7https://tienda.narutocraft.es"+
+                    "\n&aDISCORD &7https://discord.com/invite/changeThis"+
                     "\n"+
                     "\n%player% &aesperamos que disfrutes" +
                     "\n&b¡Empecemos la aventura!" +
                     "\n&r" +
                     "\n&r";
 
-    @Comment({"", "Chat Format", "Use %player% for player name and prefix. And %message% to chat message", "If prefix is empty, only player name will be used"})
-    public String chatFormat = "%player%&7: &r%message%";
-
-
     @Comment({"", "Common"})
-    public String prefix = "&6&lETERNAL &r";
+    public String prefix = "&6&lNARUTOCRAFT &r";
     public String noPermission = "&cNo tienes permisos para hacer eso";
     public String playerNotFound = "&cEl jugador no existe";
     public String noOnlinePlayer = "&fEl jugador &b%player% &fno esta online";
@@ -39,21 +35,13 @@ public class MessagesFile extends BukkitYamlConfiguration {
     public String setSpawn = "&aSpawn establecido";
     public String helpCommand =
             "\n&r" +
-                    "\n&6&lETERNAL &8(&fAyuda&7)"+
+                    "\n&6&lNARUTOCRAFT &8(&fAyuda&7)"+
                     "\n&r"+
-                    "\n&b/menu &7- &fAbre el menu principal"+
-                    "\n&b/warps &7- &fAbre el menu de warps"+
-                    "\n&b/pwarp &7- &fAbre el menu de warps de usuarios"+
-                    "\n&b/kits &7- &fAbre el menu de kits"+
-                    "\n&b/ah &7- &fAbre el menu de subastas"+
-                    "\n&b/trabajos ayuda &7- &fAyuda de trabajos"+
-                    "\n&r";
-    public String jobsHelp =
-            "\n&r" +
-                    "\n&6&lETERNAL &8(&fTrabajos&7)"+
+                    "\n&7Añadir info de explicacione"+
                     "\n&r"+
-                    "\n&b/trabajos &7- &fInformación de los trabajos"+
-                    "\n&b/trabajos lista &7- &fLista de trabajos y información detallada"+
+                    "\n&7Mas info"+
+                    "\n&r"+
+                    "\n&7Mas info"+
                     "\n&r";
 
     @Comment({"", "Teleport"})
@@ -126,21 +114,12 @@ public class MessagesFile extends BukkitYamlConfiguration {
 
     @Comment({"", "Social Commands"})
     public String shopUrl = "https://tienda.eternaln.net";
-    public String twitterUrl = "https://twitter.com/EternalNOficial";
-    public String discordUrl = "https://discord.com/invite/bMarGsQYfb";
-    public String youtubeUrl = "https://www.youtube.com/c/eternalnetwork";
-    public String websiteUrl = "https://eternalnetwork.net";
-    public String tiktokUrl = "https://www.tiktok.com/@eternalnmc";
+    public String twitterUrl = "https://twitter.com/changeThis";
+    public String discordUrl = "https://discord.com/invite/changeThis";
+    public String youtubeUrl = "https://www.youtube.com/c/changeThis";
+    public String websiteUrl = "https://narutocraft.es";
+    public String tiktokUrl = "https://www.tiktok.com/@changeThis";
 
-    @Comment({"", "Item"})
-    public String itemGived = "&aObjeto Entregado";
-    public String itemcHelp =
-            "\n&8&m-----------------------------------------" +
-                    "\n&6&lETERNAL &7Ayuda Items" +
-                    "\n&r" +
-                    "\n&b/itemc give &7(gold/plate) (coin/fragment)" +
-                    "\n&b/objetoc dar &7(oro/plata) (moneda/fragmento)" +
-                    "\n&8&m-----------------------------------------";
 
     public MessagesFile() {
         super(
