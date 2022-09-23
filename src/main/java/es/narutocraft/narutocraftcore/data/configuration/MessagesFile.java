@@ -113,7 +113,7 @@ public class MessagesFile extends BukkitYamlConfiguration {
     public String setSpectatorTarget = "&fTu modo de juego ha sido cambiado por &b%player% &fa &eEspectador";
 
     @Comment({"", "Social Commands"})
-    public String shopUrl = "https://tienda.eternaln.net";
+    public String shopUrl = "https://tienda.narutocraft.es";
     public String twitterUrl = "https://twitter.com/changeThis";
     public String discordUrl = "https://discord.com/invite/changeThis";
     public String youtubeUrl = "https://www.youtube.com/c/changeThis";

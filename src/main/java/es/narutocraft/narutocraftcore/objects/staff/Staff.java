@@ -56,7 +56,7 @@ public class Staff {
         StaffItems.giveItems(this);
 
         if (message) {
-            Utils.send(player,"&aStaffMode Activado");
+            return;
         }
     }
 
@@ -73,7 +73,7 @@ public class Staff {
         player.getInventory().setContents(getContents());
 
         if (message) {
-            Utils.send(player,"&cStaffMode Desactivado");
+            return;
         }
     }
 
@@ -124,7 +124,7 @@ public class Staff {
             player.setAllowFlight(false);
             setFlying(false);
             if(message) {
-                Utils.send(player, "&cFly Desactivado");
+                return;
             }
         }
     }

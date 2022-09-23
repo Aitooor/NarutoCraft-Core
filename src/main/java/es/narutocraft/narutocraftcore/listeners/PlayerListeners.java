@@ -1,6 +1,7 @@
 package es.narutocraft.narutocraftcore.listeners;
 
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.utils.PlayerUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
 import es.narutocraft.narutocraftcore.annotations.Register;
@@ -33,6 +34,7 @@ public class PlayerListeners implements Listener {
         if (player1 != null) {
             Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
                 if (!player1.hasPlayedBefore()) {
+                    PlayerUtil.clear(player1, true, true);
                     player1.teleport(config.spawnLocation);
                 }
             }, 4L);

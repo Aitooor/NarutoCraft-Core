@@ -1,7 +1,7 @@
 ## NarutoCraftCore
 
     
-    Simple 1.7.10(forge) core for NarutoCraft with basis
+    Simple 1.16.5(for forge + spigot) core for NarutoCraft with basis
 
 # Info
 

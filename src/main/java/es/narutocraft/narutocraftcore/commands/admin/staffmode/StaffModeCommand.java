@@ -33,8 +33,10 @@ public class StaffModeCommand extends BaseCommand {
 
         if (!staff.isStaffMode()) {
             staff.enableStaffMode(true);
+            Utils.send(sender,"&aStaffMode Activado");
         } else {
             staff.disableStaffMode(true);
+            Utils.send(sender,"&cStaffMode Desactivado");
         }
     }
 
