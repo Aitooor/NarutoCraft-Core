@@ -30,7 +30,11 @@ public class Configuration extends BukkitYamlConfiguration {
     @Convert(LocationStringConverter.class)
     @Comment({"", "DON'T MODIFY SPAWN LOCATION"})
     @Setter
-    public Location spawnLocation = new Location(Bukkit.getWorld("world"), 0, 128, 0);
+    public Location spawnFirstLocation = new Location(Bukkit.getWorld("Naruto"), 0, 128, 0);
+    @Convert(LocationStringConverter.class)
+    @Comment({"", "DON'T MODIFY SPAWN LOCATION"})
+    @Setter
+    public Location spawnLocation = new Location(Bukkit.getWorld("Naruto"), 0, 128, 0);
 
     public Configuration() {
         super(

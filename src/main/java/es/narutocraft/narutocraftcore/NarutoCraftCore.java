@@ -5,6 +5,7 @@ import co.aikar.commands.PaperCommandManager;
 import com.google.common.collect.ImmutableList;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
+import es.narutocraft.narutocraftcore.data.configuration.VillagesFile;
 import es.narutocraft.narutocraftcore.data.configuration.WarpsFile;
 import lombok.Getter;
 import es.narutocraft.narutocraftcore.annotations.RegisterExecutor;
@@ -36,6 +37,8 @@ public final class NarutoCraftCore extends JavaPlugin {
     @Getter
     private static Configuration configuration;
     @Getter
+    private static VillagesFile villagesFile;
+    @Getter
     private static MessagesFile messagesFile;
     @Getter
     private static WarpsFile warpsFile;
@@ -53,6 +56,7 @@ public final class NarutoCraftCore extends JavaPlugin {
 
         createMessageFolder();
         configuration = new Configuration();
+        villagesFile = new VillagesFile();
         messagesFile = new MessagesFile();
         warpsFile = new WarpsFile(this);
 
