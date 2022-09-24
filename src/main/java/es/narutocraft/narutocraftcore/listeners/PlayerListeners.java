@@ -1,6 +1,7 @@
 package es.narutocraft.narutocraftcore.listeners;
 
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.data.configuration.VillagesFile;
 import es.narutocraft.narutocraftcore.utils.PlayerUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
@@ -25,17 +26,23 @@ public class PlayerListeners implements Listener {
 
     private Configuration config = NarutoCraftCore.getInstance().getConfiguration();
     private MessagesFile messagesFile = NarutoCraftCore.getMessagesFile();
+    private VillagesFile villagesFile = NarutoCraftCore.getVillagesFile();
 
     @EventHandler
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
         UUID player = event.getUniqueId();
         Player player1 = Bukkit.getPlayer(player);
+        boolean defaultGroup = PlayerUtil.isPlayerInGroup(player1, "default");
 
         if (player1 != null) {
             Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
                 if (!player1.hasPlayedBefore()) {
                     PlayerUtil.clear(player1, true, true);
                     player1.teleport(config.spawnLocation);
+                    player1.performCommand("kit default");
+                }
+                if (defaultGroup) {
+                    player1.teleport(config.spawnFirstLocation);
                 }
             }, 4L);
         }
@@ -101,7 +108,34 @@ public class PlayerListeners implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        boolean defaultGroup = PlayerUtil.isPlayerInGroup(player, "default");
+        boolean hojaGroup = PlayerUtil.isPlayerInGroup(player, "hoja");
+        boolean arenaGroup = PlayerUtil.isPlayerInGroup(player, "arena");
+        boolean piedraGroup = PlayerUtil.isPlayerInGroup(player, "piedra");
+        boolean nubeGroup = PlayerUtil.isPlayerInGroup(player, "nube");
+        boolean nieblaGroup = PlayerUtil.isPlayerInGroup(player, "niebla");
+
         event.setQuitMessage(null);
+
+        if(defaultGroup) {
+            player.teleport(villagesFile.hoja);
+        }
+        if(hojaGroup) {
+            player.teleport(villagesFile.hoja);
+        }
+        if(arenaGroup) {
+            player.teleport(villagesFile.arena);
+        }
+        if(piedraGroup) {
+            player.teleport(villagesFile.piedra);
+        }
+        if(nubeGroup) {
+            player.teleport(villagesFile.nube);
+        }
+        if(nieblaGroup) {
+            player.teleport(villagesFile.niebla);
+        }
 
         ArrayList<UUID> gods = new GodCommand().getGods();
         gods.remove(event.getPlayer().getUniqueId());

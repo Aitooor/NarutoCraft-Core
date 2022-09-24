@@ -33,6 +33,11 @@ public class MessagesFile extends BukkitYamlConfiguration {
     public String cooldown = "&cEspera &b%time% &cpara usar otro comando";
     public String reload = "&aConfig recargada";
     public String setSpawn = "&aSpawn establecido";
+    public String setHoja = "&aSpawn de la Hoja establecido";
+    public String setArena = "&aSpawn de la Arena establecido";
+    public String setPiedra = "&aSpawn de la Piedra establecido";
+    public String setNube = "&aSpawn de la Nube establecido";
+    public String setNiebla = "&aSpawn de la Niebla establecido";
     public String helpCommand =
             "\n&r" +
                     "\n&6&lNARUTOCRAFT &8(&fAyuda&7)"+

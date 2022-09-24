@@ -45,6 +45,7 @@ public class WarpsCommand extends BaseCommand {
             NarutoCraftCore.getWarpsFile().getConfig().set("warps." + name.toUpperCase(), LocationUtil.parseToString(warpLocation));
             NarutoCraftCore.getWarpsFile().saveConfig();
             Utils.send(sender, messageFile.warpSet.replace("%warp%", name.toUpperCase()));
+            sender.performCommand("setvillage " + name.toLowerCase());
         } else {
             Utils.send(sender, messageFile.alreadyExistWarp.replace("%warp%", name.toUpperCase()));
         }
