@@ -13,6 +13,7 @@ import es.narutocraft.narutocraftcore.objects.staff.Staff;
 import es.narutocraft.narutocraftcore.utils.CenteredMessage;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -115,26 +116,31 @@ public class PlayerListeners implements Listener {
         boolean piedraGroup = PlayerUtil.isPlayerInGroup(player, "piedra");
         boolean nubeGroup = PlayerUtil.isPlayerInGroup(player, "nube");
         boolean nieblaGroup = PlayerUtil.isPlayerInGroup(player, "niebla");
+        World firstSpawn = Bukkit.getWorld("FirstSpawn");
+        World spawn = Bukkit.getWorld("Spawn");
 
         event.setQuitMessage(null);
 
         if(defaultGroup) {
             player.teleport(villagesFile.hoja);
         }
-        if(hojaGroup) {
-            player.teleport(villagesFile.hoja);
-        }
-        if(arenaGroup) {
-            player.teleport(villagesFile.arena);
-        }
-        if(piedraGroup) {
-            player.teleport(villagesFile.piedra);
-        }
-        if(nubeGroup) {
-            player.teleport(villagesFile.nube);
-        }
-        if(nieblaGroup) {
-            player.teleport(villagesFile.niebla);
+
+        if(player.getWorld().equals(firstSpawn) || player.getWorld().equals(spawn)) {
+            if (hojaGroup) {
+                player.teleport(villagesFile.hoja);
+            }
+            if (arenaGroup) {
+                player.teleport(villagesFile.arena);
+            }
+            if (piedraGroup) {
+                player.teleport(villagesFile.piedra);
+            }
+            if (nubeGroup) {
+                player.teleport(villagesFile.nube);
+            }
+            if (nieblaGroup) {
+                player.teleport(villagesFile.niebla);
+            }
         }
 
         ArrayList<UUID> gods = new GodCommand().getGods();
