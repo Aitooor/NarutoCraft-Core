@@ -29,7 +29,7 @@ public class MessageCommand extends BaseCommand {
     @CatchUnknown
     @HelpCommand("ayuda|help")
     public void help(Player sender, CommandHelp help) {
-        if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("survivalclasic.cooldown.bypass")) {
+        if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
             String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
             Utils.send(sender, messageFile.cooldown.replace("%time%", cooldownTime));
             return;
@@ -41,7 +41,7 @@ public class MessageCommand extends BaseCommand {
     @Default
     @CommandCompletion("@players @players")
     public void msg(Player sender, Player target, String message) {
-        if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("survivalclasic.cooldown.bypass")) {
+        if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
             String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
             Utils.send(sender, messageFile.cooldown.replace("%time%", cooldownTime));
             return;
@@ -63,7 +63,6 @@ public class MessageCommand extends BaseCommand {
 
         Utils.sendNoPrefix(sender, "&8(MSG) &7" + sender.getDisplayName() + " &7-> &b" + target.getDisplayName() + " &7> &7" + message);
         Utils.sendNoPrefix(target, "&8(MSG) &b" + sender.getDisplayName() + " &7> &7" + message);
-        target.playSound(target.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
 
         getConversations().put(sender.getUniqueId(), target.getUniqueId());
         getConversations().put(target.getUniqueId(), sender.getUniqueId());
