@@ -2,7 +2,7 @@ package es.narutocraft.narutocraftcore;
 
 import co.aikar.commands.Locales;
 import co.aikar.commands.PaperCommandManager;
-import com.google.common.collect7.10.ImmutableList;
+import com.google.common.collect.ImmutableList;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
 import es.narutocraft.narutocraftcore.data.configuration.VillagesFile;
