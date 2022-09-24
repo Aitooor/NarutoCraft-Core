@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
-@CommandAlias("warp|warps")
+@CommandAlias("warp|warps|villa|villas|village|villages")
 public class WarpsCommand extends BaseCommand {
 
     private MessagesFile messageFile = NarutoCraftCore.getMessagesFile();

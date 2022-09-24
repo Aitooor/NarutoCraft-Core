@@ -40,7 +40,7 @@ public class MessageCommand extends BaseCommand {
 
     @Default
     @CommandCompletion("@players @players")
-    public void msg(Player sender, Player target, String message) {
+    public void msg(Player sender, String target, String message) {
         if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
             String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
             Utils.send(sender, messageFile.cooldown.replace("%time%", cooldownTime));
@@ -51,24 +51,26 @@ public class MessageCommand extends BaseCommand {
         onMsg(sender, target, message);
     }
 
-    private void onMsg(Player sender, Player target, String message) {
+    private void onMsg(Player sender, String target, String message) {
+        Player targetPlayer = Bukkit.getPlayer(target);
+
         if (target == null) {
             Utils.send(sender, "&cEl jugador no esta online");
             return;
         }
-        if(target.equals(sender.getName())) {
+        if(target.equalsIgnoreCase(sender.getName())) {
             Utils.send(sender, "&cNo puedes enviar mensajes a ti mismo");
             return;
         }
 
-        Utils.sendNoPrefix(sender, "&8(MSG) &7" + sender.getDisplayName() + " &7-> &b" + target.getDisplayName() + " &7> &7" + message);
-        Utils.sendNoPrefix(target, "&8(MSG) &b" + sender.getDisplayName() + " &7> &7" + message);
+        Utils.sendNoPrefix(sender, "&8(MSG) &7" + sender.getDisplayName() + " &7-> &b" + targetPlayer.getDisplayName() + " &7> &7" + message);
+        Utils.sendNoPrefix(targetPlayer, "&8(MSG) &b" + sender.getDisplayName() + " &7> &7" + message);
 
-        getConversations().put(sender.getUniqueId(), target.getUniqueId());
-        getConversations().put(target.getUniqueId(), sender.getUniqueId());
+        getConversations().put(sender.getUniqueId(), targetPlayer.getUniqueId());
+        getConversations().put(targetPlayer.getUniqueId(), sender.getUniqueId());
 
         SocialSpyCommand.getSocialSpyList().stream().map(Bukkit::getPlayer).filter(Objects::nonNull).forEach(p -> {
-            Utils.sendNoPrefix(p, "&6&lSP &8(MSG) &7De &b" + sender.getDisplayName() + " &7a &b" + target.getDisplayName() + " &7> &7" + message);
+            Utils.sendNoPrefix(p, "&6&lSP &8(MSG) &7De &b" + sender.getDisplayName() + " &7a &b" + targetPlayer.getDisplayName() + " &7> &7" + message);
         });
     }
 }

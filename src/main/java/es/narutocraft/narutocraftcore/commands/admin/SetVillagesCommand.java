@@ -10,7 +10,7 @@ import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-@CommandAlias("setvillage")
+@CommandAlias("setvillage|setvillages")
 @CommandPermission("narutocraftcore.setvillage")
 public class SetVillagesCommand extends BaseCommand {
 

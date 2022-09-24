@@ -11,15 +11,15 @@ import org.bukkit.inventory.ItemStack;
 @AllArgsConstructor
 public enum StaffItems {
 
-    VANISH_OFF("&bVanish &c&lDESACTIVADO", new ItemStack(Material.INK_SAC), 1,0),
-    VANISH_ON("&bVanish &a&lACTIVADO", new ItemStack(Material.INK_SAC), 2,0),
+    VANISH_OFF("&bVanish &c&lDESACTIVADO", new ItemStack(Material.INK_SACK), 1,0),
+    VANISH_ON("&bVanish &a&lACTIVADO", new ItemStack(Material.INK_SACK), 2,0),
     FLY_OFF("&bFly &c&lDESACTIVADO", new ItemStack(Material.STICK), 3,1),
     FLY_ON("&bFly &a&lACTIVADO", new ItemStack(Material.BLAZE_ROD), 4, 1),
     INSPECTOR("&cInvsee", new ItemStack(Material.CHEST),0,2),
     ALTS("&cAlts", new ItemStack(Material.ANVIL), 0,4),
     RANDOM_TELEPORT("&bRPT a un User", new ItemStack(Material.BOOK), 0,6),
     COMPASS("&bBrújula", new ItemStack(Material.COMPASS),0 ,7),
-    WORLD_EDIT("&bWorldEdit", new ItemStack(Material.WOODEN_AXE),0,8);
+    WORLD_EDIT("&bWorldEdit", new ItemStack(Material.WOOD_AXE),0,8);
 
     private final String displayName;
     private final ItemStack itemStack;

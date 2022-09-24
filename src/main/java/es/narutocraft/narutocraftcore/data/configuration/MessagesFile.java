@@ -14,7 +14,7 @@ public class MessagesFile extends BukkitYamlConfiguration {
     @Comment({"Use \\n for new lines", "Use %player% for player name" ,"" , "Join Message", "Use %player% for player name and prefix", "If prefix is empty, only player name will be used"})
     public String joinMessage =
             "\n&r" +
-                    "\n&6&lNARUTOCRAFT &8| &bServer 1"+
+                    "\n&e&lNARUTO&6&lCRAFT &8| &bServer 1"+
                     "\n&r"+
                     "\n&aIP &7narutocraft.es"+
                     "\n&aTIENDA &7https://tienda.narutocraft.es"+
@@ -26,7 +26,7 @@ public class MessagesFile extends BukkitYamlConfiguration {
                     "\n&r";
 
     @Comment({"", "Common"})
-    public String prefix = "&6&lNARUTOCRAFT &r";
+    public String prefix = "&e&lNARUTO&6&lCRAFT &r";
     public String noPermission = "&cNo tienes permisos para hacer eso";
     public String playerNotFound = "&cEl jugador no existe";
     public String noOnlinePlayer = "&fEl jugador &b%player% &fno esta online";
@@ -40,7 +40,7 @@ public class MessagesFile extends BukkitYamlConfiguration {
     public String setNiebla = "&aSpawn de la Niebla establecido";
     public String helpCommand =
             "\n&r" +
-                    "\n&6&lNARUTOCRAFT &8(&fAyuda&7)"+
+                    "\n&e&lNARUTO&6&lCRAFT &8(&fAyuda&7)"+
                     "\n&r"+
                     "\n&7Añadir info de explicacione"+
                     "\n&r"+
