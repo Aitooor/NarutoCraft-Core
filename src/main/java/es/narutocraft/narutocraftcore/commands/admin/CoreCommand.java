@@ -43,7 +43,6 @@ public class CoreCommand extends BaseCommand {
             NarutoCraftCore.getConfiguration().save();
 
             Utils.send(sender, messageFile.setSpawn);
-            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         }
         if(type.equals("default")) {
             NarutoCraftCore.getConfiguration().load();
@@ -51,7 +50,6 @@ public class CoreCommand extends BaseCommand {
             NarutoCraftCore.getConfiguration().save();
 
             Utils.send(sender, messageFile.setSpawn);
-            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         }
         if(type.equals("other")) {
             NarutoCraftCore.getConfiguration().load();
@@ -59,7 +57,6 @@ public class CoreCommand extends BaseCommand {
             NarutoCraftCore.getConfiguration().save();
 
             Utils.send(sender, messageFile.setSpawn);
-            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
         }
     }
 }

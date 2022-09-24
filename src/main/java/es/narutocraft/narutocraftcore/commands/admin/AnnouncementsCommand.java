@@ -15,13 +15,14 @@ public class AnnouncementsCommand extends BaseCommand {
 
     @Default
     public void announce(CommandSender sender, String message) {
-
         for (Player online : Bukkit.getServer().getOnlinePlayers()) {
-            for (String messages : message.split("%tab%")) {
-                CenteredMessage.Chat.sendCenteredMessage((Player) sender, "&6&lANUNCIO");
-                CenteredMessage.Chat.sendCenteredMessage((Player) sender, "");
-                CenteredMessage.Chat.sendCenteredMessage((Player) sender, messages);
-                CenteredMessage.Chat.sendCenteredMessage((Player) sender, "");
+            if (online != null) {
+                CenteredMessage.Chat.sendCenteredMessage(online, "&6&lANUNCIO");
+                CenteredMessage.Chat.sendCenteredMessage(online, "");
+                for (String messages : message.split("%tab%")) {
+                    CenteredMessage.Chat.sendCenteredMessage(online, messages);
+                }
+                CenteredMessage.Chat.sendCenteredMessage(online, "");
             }
         }
     }

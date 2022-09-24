@@ -2,6 +2,7 @@ package es.narutocraft.narutocraftcore.listeners;
 
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
 import es.narutocraft.narutocraftcore.data.configuration.VillagesFile;
+import es.narutocraft.narutocraftcore.utils.LocationUtil;
 import es.narutocraft.narutocraftcore.utils.PlayerUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
@@ -33,7 +34,7 @@ public class PlayerListeners implements Listener {
     public void onPreLogin(AsyncPlayerPreLoginEvent event) {
         UUID player = event.getUniqueId();
         Player player1 = Bukkit.getPlayer(player);
-        boolean defaultGroup = PlayerUtil.isPlayerInGroup(player1, "default");
+        PlayerData data = NarutoCraftCore.getDataManager().getData(player1);
 
         if (player1 != null) {
             Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
@@ -41,9 +42,6 @@ public class PlayerListeners implements Listener {
                     PlayerUtil.clear(player1, true, true);
                     player1.teleport(config.spawnLocation);
                     player1.performCommand("kit default");
-                }
-                if (defaultGroup) {
-                    player1.teleport(config.spawnFirstLocation);
                 }
             }, 4L);
         }
@@ -92,6 +90,15 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
+
+        Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
+            if(data != null) {
+                if(data.getLatestPos() != null) {
+                    player.teleport(LocationUtil.parseToLocation(data.getLatestPos().get("quitPos")));
+                }
+            }
+        }, 5L);
 
         for (Staff staff : Staff.getStaffs().values()) {
             Player pStaff = staff.getPlayer();
@@ -110,6 +117,8 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().getData(player);
+
         boolean defaultGroup = PlayerUtil.isPlayerInGroup(player, "default");
         boolean hojaGroup = PlayerUtil.isPlayerInGroup(player, "hoja");
         boolean arenaGroup = PlayerUtil.isPlayerInGroup(player, "arena");
@@ -120,6 +129,10 @@ public class PlayerListeners implements Listener {
         World spawn = Bukkit.getWorld("Spawn");
 
         event.setQuitMessage(null);
+
+        data.getLatestPos().clear();
+        data.getLatestPos().put("quitPos", LocationUtil.parseToString(player.getLocation()));
+        data.save();
 
         if(defaultGroup) {
             player.teleport(villagesFile.hoja);

@@ -48,7 +48,7 @@ public class SetHomeCommand extends BaseCommand {
         ArrayList<Integer> arrayList = new ArrayList<>();
         for (PermissionAttachmentInfo permissionAttachmentInfo : sender.getEffectivePermissions()) {
             if (permissionAttachmentInfo.getPermission().startsWith("narutocraftcore.homes.max.")) {
-                int i = Integer.parseInt(permissionAttachmentInfo.getPermission().toLowerCase().replaceAll("survivalclasic\\.homes\\.max\\.", ""));
+                int i = Integer.parseInt(permissionAttachmentInfo.getPermission().toLowerCase().replaceAll("narutocraftcore\\.homes\\.max\\.", ""));
                 arrayList.add(i);
             }
         }

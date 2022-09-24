@@ -27,7 +27,6 @@ public class ExpCommand extends BaseCommand {
             public void give(Player sender, int amount) {
                 sender.giveExp(amount);
                 Utils.send(sender, "&fHas recibido &b" + amount + " &fexp");
-                sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
             }
 
             @Subcommand("otros|otro|other|others")
@@ -38,7 +37,6 @@ public class ExpCommand extends BaseCommand {
                 targetPlayer.giveExp(amount);
                 Utils.send(sender, "&fHas dado &b" + amount + " &fexp a &b" + targetPlayer.getName());
                 Utils.send(targetPlayer, "&fHas recibido &b" + amount + " &fexp de &b" + sender.getName());
-                targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
             }
         }
 
@@ -48,7 +46,6 @@ public class ExpCommand extends BaseCommand {
             public void give(Player sender, int amount) {
                 sender.giveExpLevels(amount);
                 Utils.send(sender, "&fHas recibido &b" + amount + " &fniveles de exp");
-                sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
             }
 
             @Subcommand("otros|otro|other|others")
@@ -59,7 +56,6 @@ public class ExpCommand extends BaseCommand {
                 targetPlayer.giveExpLevels(amount);
                 Utils.send(sender, "&fHas dado &b" + amount + " &fniveles de exp a &b" + targetPlayer.getName());
                 Utils.send(targetPlayer, "&fHas recibido &b" + amount + " &fniveles de exp de &b" + sender.getName());
-                targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
             }
         }
     }
@@ -71,7 +67,6 @@ public class ExpCommand extends BaseCommand {
             sender.setExp(0);
             sender.setLevel(amount);
             Utils.send(sender, "&fHas establecido &b" + amount + " &fniveles de exp");
-            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
         }
 
         @Subcommand("otros|otro|other|others")
@@ -83,7 +78,6 @@ public class ExpCommand extends BaseCommand {
             targetPlayer.setLevel(amount);
             Utils.send(sender, "&fHas establecido &b" + amount + " &fniveles de exp a &b" + targetPlayer.getName());
             Utils.send(targetPlayer, "&fHas establecido &b" + amount + " &fniveles de exp");
-            targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
         }
     }
 
@@ -94,7 +88,6 @@ public class ExpCommand extends BaseCommand {
             sender.setExp(0);
             sender.setLevel(0);
             Utils.send(sender, "&fHas limpiado tu experiencia");
-            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
         }
 
         @Subcommand("otros|otro|other|others")
@@ -106,7 +99,6 @@ public class ExpCommand extends BaseCommand {
             targetPlayer.setLevel(0);
             Utils.send(sender, "&fHas limpiado la experiencia de &b" + targetPlayer.getName());
             Utils.send(targetPlayer, "&fHas limpiado su experiencia");
-            targetPlayer.playSound(targetPlayer.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1, 1);
         }
     }
 }
