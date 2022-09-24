@@ -60,7 +60,7 @@ public class SkullBuilder {
     }
 
     public ItemStack toItemStack() {
-        ItemStack itemStack = new ItemStack(Material.PLAYER_HEAD, 1);
+        ItemStack itemStack = new ItemStack(Material.SKULL, 1);
         SkullMeta skullMeta = (SkullMeta) itemStack.getItemMeta();
 
 
