@@ -52,4 +52,8 @@ public class PlayerUtil {
         }
         return false;
     }
+
+    public static boolean isPlayerInGroup(Player player, String group) {
+        return player.hasPermission("group." + group);
+    }
 }

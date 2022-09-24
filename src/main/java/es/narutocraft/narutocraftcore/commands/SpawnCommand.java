@@ -5,6 +5,7 @@ import co.aikar.commands.annotation.*;
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
+import es.narutocraft.narutocraftcore.utils.PlayerUtil;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import es.narutocraft.narutocraftcore.utils.Cooldown;
 import org.bukkit.Bukkit;
@@ -22,21 +23,31 @@ public class SpawnCommand extends BaseCommand {
 
     @Default
     public void spawn(Player sender) {
+        boolean defaultGroup = PlayerUtil.isPlayerInGroup(sender, "default");
+
         if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
             String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
             Utils.send(sender, messageFile.cooldown.replace("%time%", cooldownTime));
             return;
         }
-
         cooldown.addToCooldown(sender.getUniqueId());
-        sender.teleport(config.spawnLocation);
-        Utils.send(sender, messageFile.tpSpawn);
+
+        if(defaultGroup) {
+            sender.teleport(config.spawnFirstLocation);
+            Utils.send(sender, messageFile.tpSpawn);
+        }
+        else {
+            sender.teleport(config.spawnLocation);
+            Utils.send(sender, messageFile.tpSpawn);
+        }
     }
 
     @Subcommand("otros|others|other|otro")
     @CommandPermission("narutocraftcore.spawn.other")
     @CommandCompletion("@players")
     public void spawnOther(Player sender, Player target) {
+        boolean defaultGroup = PlayerUtil.isPlayerInGroup(sender, "default");
+
         if (target == null) {
             Utils.send(sender, messageFile.playerNotFound);
             return;
@@ -47,17 +58,31 @@ public class SpawnCommand extends BaseCommand {
             return;
         }
 
-        target.teleport(NarutoCraftCore.getConfiguration().getSpawnLocation());
-        Utils.send(target, messageFile.tpSpawn);
+        if(defaultGroup) {
+            target.teleport(NarutoCraftCore.getConfiguration().getSpawnFirstLocation());
+            Utils.send(target, messageFile.tpSpawn);
+        }
+        else {
+            target.teleport(NarutoCraftCore.getConfiguration().getSpawnLocation());
+            Utils.send(target, messageFile.tpSpawn);
+        }
     }
 
     @Subcommand("all|todos")
     @CommandPermission("narutocraftcore.spawn.all")
     public void spawnAll(Player sender) {
         for (Player online : Bukkit.getServer().getOnlinePlayers()) {
+            boolean defaultGroup = PlayerUtil.isPlayerInGroup(online, "default");
+
             if (online != sender) {
-                online.teleport(NarutoCraftCore.getConfiguration().getSpawnLocation());
-                Utils.send(online, messageFile.tpSpawnOther);
+                if(defaultGroup) {
+                    online.teleport(NarutoCraftCore.getConfiguration().getSpawnFirstLocation());
+                    Utils.send(online, messageFile.tpSpawnOther);
+                }
+                else {
+                    online.teleport(NarutoCraftCore.getConfiguration().getSpawnLocation());
+                    Utils.send(online, messageFile.tpSpawnOther);
+                }
             }
         }
 

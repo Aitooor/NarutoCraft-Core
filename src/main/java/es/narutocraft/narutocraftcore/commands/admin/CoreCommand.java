@@ -36,12 +36,30 @@ public class CoreCommand extends BaseCommand {
 
     @Subcommand("setSpawn")
     @CommandPermission("narutocraftcore.setspawn")
-    public void setSpawn(Player sender) {
-        NarutoCraftCore.getConfiguration().load();
-        NarutoCraftCore.getConfiguration().setSpawnLocation(sender.getLocation());
-        NarutoCraftCore.getConfiguration().save();
+    public void setSpawn(Player sender, @Optional String type) {
+        if(type == null) {
+            NarutoCraftCore.getConfiguration().load();
+            NarutoCraftCore.getConfiguration().setSpawnFirstLocation(sender.getLocation());
+            NarutoCraftCore.getConfiguration().save();
 
-        Utils.send(sender, messageFile.setSpawn);
-        sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+            Utils.send(sender, messageFile.setSpawn);
+            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        }
+        if(type.equals("default")) {
+            NarutoCraftCore.getConfiguration().load();
+            NarutoCraftCore.getConfiguration().setSpawnFirstLocation(sender.getLocation());
+            NarutoCraftCore.getConfiguration().save();
+
+            Utils.send(sender, messageFile.setSpawn);
+            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        }
+        if(type.equals("other")) {
+            NarutoCraftCore.getConfiguration().load();
+            NarutoCraftCore.getConfiguration().setSpawnLocation(sender.getLocation());
+            NarutoCraftCore.getConfiguration().save();
+
+            Utils.send(sender, messageFile.setSpawn);
+            sender.playSound(sender.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1.0f, 1.0f);
+        }
     }
 }
