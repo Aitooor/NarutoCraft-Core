@@ -11,8 +11,8 @@ import org.bukkit.inventory.ItemStack;
 @AllArgsConstructor
 public enum StaffItems {
 
-    VANISH_OFF("&bVanish &c&lDESACTIVADO", new ItemStack(Material.INK_SACK), 1,0),
-    VANISH_ON("&bVanish &a&lACTIVADO", new ItemStack(Material.INK_SACK), 2,0),
+    VANISH_OFF("&bVanish &c&lDESACTIVADO", new ItemStack(Material.INK_SACK), 8,0),
+    VANISH_ON("&bVanish &a&lACTIVADO", new ItemStack(Material.INK_SACK), 10,0),
     FLY_OFF("&bFly &c&lDESACTIVADO", new ItemStack(Material.STICK), 3,1),
     FLY_ON("&bFly &a&lACTIVADO", new ItemStack(Material.BLAZE_ROD), 4, 1),
     INSPECTOR("&cInvsee", new ItemStack(Material.CHEST),0,2),
