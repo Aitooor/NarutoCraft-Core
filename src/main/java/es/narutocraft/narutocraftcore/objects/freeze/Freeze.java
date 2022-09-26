@@ -1,6 +1,8 @@
 package es.narutocraft.narutocraftcore.objects.freeze;
 
 import com.google.common.collect.Maps;
+import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.data.mongo.PlayerData;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
 import es.narutocraft.narutocraftcore.objects.staff.StaffHandler;
 import es.narutocraft.narutocraftcore.utils.Utils;
@@ -35,9 +37,12 @@ public class Freeze {
     }
 
     public void freezePlayer(boolean message) {
-        setFrozen(true);
-
         Player player = getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
+
+        setFrozen(true);
+        data.setFrozen(true);
+        data.save();
 
         setArmorContents(player.getInventory().getArmorContents());
 
@@ -54,9 +59,12 @@ public class Freeze {
     }
 
     public void unFreezePlayer(boolean message) {
-        setFrozen(false);
-
         Player player = getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
+
+        setFrozen(false);
+        data.setFrozen(true);
+        data.save();
 
         PlayerUtil.allowMovement(player);
         PlayerUtil.clear(player, true, false);

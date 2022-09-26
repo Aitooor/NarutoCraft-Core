@@ -1,6 +1,7 @@
 package es.narutocraft.narutocraftcore.listeners;
 
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.commands.admin.messages.SocialSpyCommand;
 import es.narutocraft.narutocraftcore.data.configuration.VillagesFile;
 import es.narutocraft.narutocraftcore.utils.LocationUtil;
 import es.narutocraft.narutocraftcore.utils.PlayerUtil;
@@ -90,12 +91,22 @@ public class PlayerListeners implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        Staff staffs = Staff.getStaff(player.getUniqueId());
         PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
 
         Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
             if(data != null) {
                 if(data.getLatestPos() != null) {
                     player.teleport(LocationUtil.parseToLocation(data.getLatestPos()));
+                }
+                if(data.isSocialSpy()) {
+                    SocialSpyCommand.getSocialSpyList().add(player.getUniqueId());
+                    data.setSocialSpy(true);
+                    data.save();
+                }
+                if(data.isStaffChat()) {
+                    staffs.enableStaffChat(true);
+
                 }
             }
         }, 5L);
@@ -129,7 +140,6 @@ public class PlayerListeners implements Listener {
 
         event.setQuitMessage(null);
 
-        data.setLatestPos(null);
         data.setLatestPos(LocationUtil.parseToString(player.getLocation()));
         data.save();
 
@@ -167,10 +177,14 @@ public class PlayerListeners implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
         Player killer = event.getEntity().getKiller();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
 
         if (killer != null) {
             event.setDeathMessage(Utils.ct(Utils.getPrefixGame() + "&fEl jugador &b" + player.getDisplayName() + " &fha sido asesinado por &c" + killer.getDisplayName()));
         }
+
+        data.setBackPos(LocationUtil.parseToString(player.getLocation()));
+        data.save();
     }
 
     @EventHandler

@@ -1,6 +1,8 @@
 package es.narutocraft.narutocraftcore.objects.staff;
 
 import com.google.common.collect.Maps;
+import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.data.mongo.PlayerData;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import lombok.Getter;
 import lombok.Setter;
@@ -134,22 +136,30 @@ public class Staff {
 
     public void enableStaffChat(boolean message) {
         Player player = this.getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
+
+        data.setStaffChat(true);
+        data.save();
         this.setStaffchatToggle(true);
         this.staffchat.add(player.getUniqueId());
+
         if (message) {
             Utils.send(player, "&aStaffchat activado");
         }
-
     }
 
     public void disableStaffChat(boolean message) {
         Player player = this.getPlayer();
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(player.getUniqueId());
+
+        data.setStaffChat(false);
+        data.save();
         this.setStaffchatToggle(false);
         this.staffchat.remove(player.getUniqueId());
+
         if (message) {
             Utils.send(player, "&cStaffchat desactivado");
         }
-
     }
 
     public ItemStack[] getArmorStaff() {

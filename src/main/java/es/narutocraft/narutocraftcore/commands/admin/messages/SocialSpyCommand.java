@@ -4,6 +4,7 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
+import es.narutocraft.narutocraftcore.data.mongo.PlayerData;
 import es.narutocraft.narutocraftcore.utils.Cooldown;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import lombok.Getter;
@@ -21,6 +22,7 @@ public class SocialSpyCommand extends BaseCommand {
     private Cooldown<UUID> cooldown = new Cooldown<>(NarutoCraftCore.getConfiguration().getCmdCooldown(), TimeUnit.SECONDS);
 
     @Getter private static final List<UUID> socialSpyList = new ArrayList<>();
+
     @CatchUnknown
     @HelpCommand("ayuda|help")
     public void help(Player sender, CommandHelp help) {
@@ -36,6 +38,8 @@ public class SocialSpyCommand extends BaseCommand {
 
     @Default
     public void toggleSocialSpy(Player sender) {
+        PlayerData data = NarutoCraftCore.getDataManager().handleDataCreation(sender.getUniqueId());
+
         if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
             String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
             Utils.send(sender, NarutoCraftCore.getMessagesFile().cooldown.replace("%time%", cooldownTime));
@@ -45,9 +49,13 @@ public class SocialSpyCommand extends BaseCommand {
 
         if (socialSpyList.contains(sender.getUniqueId())) {
             socialSpyList.remove(sender.getUniqueId());
+            data.setSocialSpy(false);
+            data.save();
             Utils.send(sender, "&cSocial spy desactivado");
         } else {
             socialSpyList.add(sender.getUniqueId());
+            data.setSocialSpy(true);
+            data.save();
             Utils.send(sender, "&aSocial spy activado");
         }
     }

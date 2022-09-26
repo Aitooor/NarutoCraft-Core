@@ -18,11 +18,13 @@ import java.util.UUID;
 public class PlayerData {
 
     private final UUID uuid;
-    @Setter
-    private String nickName;
+    @Setter private String nickName;
     private Map<String, String> homes;
-    @Setter
-    private String latestPos;
+    @Setter private String latestPos;
+    @Setter private String backPos;
+    @Setter private boolean frozen;
+    @Setter private boolean socialSpy;
+    @Setter private boolean staffChat;
 
     public PlayerData(UUID uuid) {
         this.uuid = uuid;
@@ -37,6 +39,10 @@ public class PlayerData {
                 this.nickName = document.getString("nick");
                 this.homes = document.get("homes", Map.class);
                 this.latestPos = document.getString("latestPos");
+                this.backPos = document.getString("backPos");
+                this.frozen = document.getBoolean("frozen");
+                this.socialSpy = document.getBoolean("socialSpy");
+                this.staffChat = document.getBoolean("staffChat");
             }
         });
     }
@@ -47,6 +53,10 @@ public class PlayerData {
         document.put("nick", getNickName());
         document.put("homes", homes);
         document.put("latestPos", getLatestPos());
+        document.put("backPos", getBackPos());
+        document.put("frozen", frozen);
+        document.put("socialSpy", socialSpy);
+        document.put("staffChat", staffChat);
         NarutoCraftCore.getMongo().getMongoCol().replaceOne(Filters.eq("uuid", getUuid().toString()), document, new ReplaceOptions().upsert(true));
     }
 }
