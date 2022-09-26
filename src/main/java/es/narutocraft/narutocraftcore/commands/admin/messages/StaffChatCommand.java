@@ -2,8 +2,6 @@ package es.narutocraft.narutocraftcore.commands.admin.messages;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
-import es.narutocraft.narutocraftcore.NarutoCraftCore;
-import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import org.bukkit.Bukkit;
@@ -12,9 +10,6 @@ import org.bukkit.entity.Player;
 @CommandAlias("staffchat|sc|chatstaff")
 @CommandPermission("narutocraftcore.staffchat")
 public class StaffChatCommand extends BaseCommand {
-    private MessagesFile messageFile = NarutoCraftCore.getMessagesFile();
-
-    private boolean staffchatToggle;
 
     @Default
     public void onStaffchat(Player sender, @Optional String message) {
