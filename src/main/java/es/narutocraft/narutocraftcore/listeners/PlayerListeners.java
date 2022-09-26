@@ -125,8 +125,7 @@ public class PlayerListeners implements Listener {
         boolean piedraGroup = PlayerUtil.isPlayerInGroup(player, "piedra");
         boolean nubeGroup = PlayerUtil.isPlayerInGroup(player, "nube");
         boolean nieblaGroup = PlayerUtil.isPlayerInGroup(player, "niebla");
-        World firstSpawn = Bukkit.getWorld("FirstSpawn");
-        World spawn = Bukkit.getWorld("Spawn");
+        World narutoWorld = Bukkit.getWorld("Naruto");
 
         event.setQuitMessage(null);
 
@@ -138,7 +137,7 @@ public class PlayerListeners implements Listener {
             player.teleport(villagesFile.hoja);
         }
 
-        if(player.getWorld().equals(firstSpawn) || player.getWorld().equals(spawn)) {
+        if(!player.getWorld().equals(narutoWorld)) {
             if (hojaGroup) {
                 player.teleport(villagesFile.hoja);
             }

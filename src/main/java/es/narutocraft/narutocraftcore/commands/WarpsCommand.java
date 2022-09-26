@@ -9,6 +9,7 @@ import es.narutocraft.narutocraftcore.utils.Cooldown;
 import es.narutocraft.narutocraftcore.utils.LocationUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.UUID;
@@ -63,6 +64,20 @@ public class WarpsCommand extends BaseCommand {
             Utils.send(sender, messageFile.warpRemoved.replace("%warp%", name.toUpperCase()));
         } else {
             Utils.send(sender, messageFile.warpNotFound.replace("%warp%", name.toUpperCase()));
+        }
+    }
+
+    @Subcommand("other|others|otros|otro")
+    @CommandCompletion("@warps")
+    public void onWarpOther(CommandSender sender, String target, String warp) {
+        Player targetPlayer = Bukkit.getPlayer(target);
+
+        if (NarutoCraftCore.getWarpsFile().getConfig().contains("warps." + warp)) {
+            String warps = NarutoCraftCore.getWarpsFile().getConfig().getString("warps." + warp);
+            targetPlayer.teleport(LocationUtil.parseToLocation(warps));
+            Utils.send(targetPlayer, messageFile.tpWarp.replace("%warp%", warp));
+        } else {
+            Utils.send(targetPlayer, messageFile.warpNotFound.replace("%warp%", warp));
         }
     }
 
