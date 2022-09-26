@@ -21,12 +21,12 @@ public class PlayerData {
     @Setter
     private String nickName;
     private Map<String, String> homes;
-    private Map<String, String> latestPos;
+    @Setter
+    private String latestPos;
 
     public PlayerData(UUID uuid) {
         this.uuid = uuid;
         this.homes = new HashMap<>();
-        this.latestPos = new HashMap<>();
         load();
     }
 
@@ -36,7 +36,7 @@ public class PlayerData {
             if (document != null) {
                 this.nickName = document.getString("nick");
                 this.homes = document.get("homes", Map.class);
-                this.latestPos = document.get("latestPos", Map.class);
+                this.latestPos = document.getString("latestPos");
             }
         });
     }
@@ -46,7 +46,7 @@ public class PlayerData {
         document.put("uuid", getUuid().toString());
         document.put("nick", getNickName());
         document.put("homes", homes);
-        document.put("latestPos", latestPos);
+        document.put("latestPos", getLatestPos());
         NarutoCraftCore.getMongo().getMongoCol().replaceOne(Filters.eq("uuid", getUuid().toString()), document, new ReplaceOptions().upsert(true));
     }
 }

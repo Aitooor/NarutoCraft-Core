@@ -95,7 +95,7 @@ public class PlayerListeners implements Listener {
         Bukkit.getScheduler().runTaskLaterAsynchronously(NarutoCraftCore.getInstance(), () -> {
             if(data != null) {
                 if(data.getLatestPos() != null) {
-                    player.teleport(LocationUtil.parseToLocation(data.getLatestPos().get("quitPos")));
+                    player.teleport(LocationUtil.parseToLocation(data.getLatestPos()));
                 }
             }
         }, 5L);
@@ -129,8 +129,8 @@ public class PlayerListeners implements Listener {
 
         event.setQuitMessage(null);
 
-        data.getLatestPos().clear();
-        data.getLatestPos().put("quitPos", LocationUtil.parseToString(player.getLocation()));
+        data.setLatestPos(null);
+        data.setLatestPos(LocationUtil.parseToString(player.getLocation()));
         data.save();
 
         if(defaultGroup) {

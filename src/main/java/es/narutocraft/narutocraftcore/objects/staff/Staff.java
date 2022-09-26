@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.UUID;
@@ -27,6 +28,8 @@ public class Staff {
     private boolean vanished;
     private boolean staffMode;
     private boolean flying;
+    private boolean staffchatToggle;
+    private List<UUID> staffchat;
     private ItemStack[] armorContents;
     private ItemStack[] contents;
 
@@ -127,6 +130,26 @@ public class Staff {
                 return;
             }
         }
+    }
+
+    public void enableStaffChat(boolean message) {
+        Player player = this.getPlayer();
+        this.setStaffchatToggle(true);
+        this.staffchat.add(player.getUniqueId());
+        if (message) {
+            Utils.send(player, "&aStaffchat activado");
+        }
+
+    }
+
+    public void disableStaffChat(boolean message) {
+        Player player = this.getPlayer();
+        this.setStaffchatToggle(false);
+        this.staffchat.remove(player.getUniqueId());
+        if (message) {
+            Utils.send(player, "&cStaffchat desactivado");
+        }
+
     }
 
     public ItemStack[] getArmorStaff() {
