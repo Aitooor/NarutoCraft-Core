@@ -38,6 +38,16 @@ public class StaffListener implements Listener {
     }
 
     @EventHandler
+    private void onStaffQuit(PlayerQuitEvent event) {
+        Player player = event.getPlayer();
+        Staff staff = Staff.getStaff(player.getUniqueId());
+
+        if (staff.isStaffMode()) {
+            staff.disableStaffMode(true);
+        }
+    }
+
+    @EventHandler
     private void onStaffDamage(EntityDamageEvent event) {
         ArrayList<UUID> gods = new GodCommand().getGods();
 
