@@ -1,17 +1,13 @@
-package es.narutocraft.narutocraftcore.commands.messages;
+package es.narutocraft.narutocraftcore.commands.admin.messages;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
-import es.narutocraft.narutocraftcore.utils.Cooldown;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 @CommandAlias("staffchat|sc|chatstaff")
 @CommandPermission("narutocraftcore.staffchat")

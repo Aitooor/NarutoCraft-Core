@@ -1,4 +1,4 @@
-package es.narutocraft.narutocraftcore.commands.admin;
+package es.narutocraft.narutocraftcore.commands.admin.messages;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.CommandAlias;

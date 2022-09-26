@@ -1,7 +1,6 @@
 package es.narutocraft.narutocraftcore.listeners;
 
 import es.narutocraft.narutocraftcore.annotations.Register;
-import es.narutocraft.narutocraftcore.commands.messages.StaffChatCommand;
 import es.narutocraft.narutocraftcore.objects.freeze.Freeze;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
 import es.narutocraft.narutocraftcore.utils.Utils;

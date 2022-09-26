@@ -4,13 +4,12 @@ import co.aikar.commands.BaseCommand;
 import co.aikar.commands.CommandHelp;
 import co.aikar.commands.annotation.*;
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
-import es.narutocraft.narutocraftcore.commands.admin.SocialSpyCommand;
+import es.narutocraft.narutocraftcore.commands.admin.messages.SocialSpyCommand;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
 import es.narutocraft.narutocraftcore.utils.Cooldown;
 import es.narutocraft.narutocraftcore.utils.Utils;
 import lombok.Getter;
 import org.bukkit.Bukkit;
-import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
