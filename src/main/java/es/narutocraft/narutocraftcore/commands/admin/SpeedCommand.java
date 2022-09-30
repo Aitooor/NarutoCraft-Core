@@ -23,7 +23,6 @@ public class SpeedCommand extends BaseCommand {
     public class SpeedCommandFly extends BaseCommand {
 
         @Default
-        @CommandCompletion("0-10")
         public void flySpeedInternal(Player sender, int speed) {
             if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
                 String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
@@ -72,7 +71,6 @@ public class SpeedCommand extends BaseCommand {
     public class SpeedCommandWalk extends BaseCommand {
 
         @Default
-        @CommandCompletion("0-10")
         public void walkSpeedInternal(Player sender, int speed) {
             if (!cooldown.isCooldownOver(sender.getUniqueId()) && !sender.hasPermission("narutocraftcore.cooldown.bypass")) {
                 String cooldownTime = cooldown.getFormattedRemainingString(sender.getUniqueId());
