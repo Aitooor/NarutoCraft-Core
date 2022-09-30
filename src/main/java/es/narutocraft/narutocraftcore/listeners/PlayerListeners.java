@@ -8,7 +8,6 @@ import es.narutocraft.narutocraftcore.utils.PlayerUtil;
 import me.clip.placeholderapi.PlaceholderAPI;
 import es.narutocraft.narutocraftcore.data.configuration.Configuration;
 import es.narutocraft.narutocraftcore.annotations.Register;
-import es.narutocraft.narutocraftcore.commands.admin.GodCommand;
 import es.narutocraft.narutocraftcore.data.configuration.MessagesFile;
 import es.narutocraft.narutocraftcore.data.mongo.PlayerData;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
@@ -164,9 +163,6 @@ public class PlayerListeners implements Listener {
                 player.teleport(villagesFile.niebla);
             }
         }
-
-        ArrayList<UUID> gods = new GodCommand().getGods();
-        gods.remove(event.getPlayer().getUniqueId());
 
         if(event.getPlayer().hasMetadata("narutocraftcore.vanish")) {
             event.getPlayer().removeMetadata("narutocraftcore.vanish", NarutoCraftCore.getInstance());

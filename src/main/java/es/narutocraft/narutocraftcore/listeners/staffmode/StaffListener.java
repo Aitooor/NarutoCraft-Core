@@ -1,7 +1,6 @@
 package es.narutocraft.narutocraftcore.listeners.staffmode;
 
 import es.narutocraft.narutocraftcore.NarutoCraftCore;
-import es.narutocraft.narutocraftcore.commands.admin.GodCommand;
 import es.narutocraft.narutocraftcore.annotations.Register;
 import es.narutocraft.narutocraftcore.objects.staff.Staff;
 import org.bukkit.Bukkit;
@@ -16,9 +15,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 @Register
 public class StaffListener implements Listener {
@@ -49,13 +45,11 @@ public class StaffListener implements Listener {
 
     @EventHandler
     private void onStaffDamage(EntityDamageEvent event) {
-        ArrayList<UUID> gods = new GodCommand().getGods();
-
         if (event.getEntity() instanceof Player) {
             Staff staff = Staff.getStaff(event.getEntity().getUniqueId());
 
             if (staff != null) {
-                if (staff.isStaffMode() || staff.isVanished() || gods.contains(staff)) {
+                if (staff.isStaffMode() || staff.isVanished()) {
                     event.setCancelled(true);
                 }
             }
