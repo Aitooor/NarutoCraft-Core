@@ -27,9 +27,14 @@ public class HealCommand extends BaseCommand {
         }
         cooldown.addToCooldown(sender.getUniqueId());
 
-        sender.setHealth(20);
-        sender.setFoodLevel(20);
-        Utils.send(sender, "&aTu salud ha sido restaurada");
+        if(sender.getHealth() < 20) {
+            sender.setHealth(20);
+            sender.setFoodLevel(20);
+            Utils.send(sender, "&aTu salud y comida ha sido restaurada");
+        } else {
+            sender.setFoodLevel(20);
+            Utils.send(sender, "&aSolo tu comida ha sido restaurada");
+        }
     }
 
     @Subcommand("otros|others|other|otro")

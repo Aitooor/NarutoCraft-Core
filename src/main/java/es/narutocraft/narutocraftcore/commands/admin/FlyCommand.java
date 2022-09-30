@@ -1,4 +1,4 @@
-package es.narutocraft.narutocraftcore.commands.premium;
+package es.narutocraft.narutocraftcore.commands.admin;
 
 import co.aikar.commands.BaseCommand;
 import co.aikar.commands.annotation.*;
