@@ -51,6 +51,7 @@ public class TpacceptCommand extends BaseCommand {
             Utils.send(sender, messagesFile.tpAccept.replace("%player%", requests.get(sender).getName()));
             requests.get(sender).sendMessage(Utils.ct(messagesFile.tpAcceptTarget.replace("%player%", sender.getName())));
             requests.get(sender).teleport(sender.getLocation());
+            requests.remove(sender);
         } else {
             Utils.send(sender, messagesFile.tpAcceptNoRequest);
         }
